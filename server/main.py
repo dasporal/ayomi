@@ -20,30 +20,40 @@ if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=port, reload=True)
 
 
+from typing import List
+
 def rpn(operations: List[str]) -> float:
     stack = []
     
     for op in operations:
-        if op.isdigit():
+        # Check if the current element is a number or float
+        if op.replace('.', '', 1).isdigit():
             stack.append(float(op))
         else:
+            if len(stack) < 2:
+                raise ValueError("Invalid expression: not enough operands for the operation.")
+            
             b = stack.pop()
             a = stack.pop()
-            
+
             if op == '+':
                 stack.append(a + b)
             elif op == '-':
                 stack.append(a - b)
             elif op == '*':
                 stack.append(a * b)
-            elif op == '/' and b == 0:
-                raise ValueError("Division by zero")
             elif op == '/':
+                if b == 0:
+                    raise ValueError("Division by zero")
                 stack.append(a / b)
             else:
                 raise ValueError(f"Unsupported operator: {op}")
     
+    if len(stack) != 1:
+        raise ValueError("Invalid expression: too many or too few operators.")
+    
     return stack.pop()
+
 
 @app.post("/calculate")
 def calculate_rpn(operations: List[str]):
