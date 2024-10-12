@@ -44,7 +44,8 @@ export default function NPICalculator() {
 			});
 
 			if (!response.ok) {
-				throw new Error('Failed to perform calculation');
+				const error = await response.json();
+				throw new Error(error.detail);
 			}
 
 			const data = await response.json();
@@ -66,11 +67,11 @@ export default function NPICalculator() {
 					<div className="flex flex-col items-center justify-center gap-4">
 						<div className="min-h-[100px] w-full rounded-md bg-secondary p-2">
 							<h3 className="mb-2 font-semibold">Stack:</h3>
-							{stack.map((item, index) => (
-								<div key={index} className="text-right">
-									{item}
-								</div>
-							))}
+							<div className="grid grid-cols-5 place-items-center px-4 py-2">
+								{stack.map((item, index) => (
+									<div key={index}>{item}</div>
+								))}
+							</div>
 						</div>
 						<div className="flex w-full gap-2">
 							<Input
