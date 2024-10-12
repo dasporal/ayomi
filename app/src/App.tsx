@@ -133,7 +133,7 @@ export default function NPICalculator() {
 				</CardContent>
 			</Card>
 
-			<Button onClick={getCSV}>Télécharger les donnéeszb</Button>
+			<Button onClick={getCSV}>Télécharger les données</Button>
 		</div>
 	);
 }
