@@ -4,7 +4,7 @@ from app.main import app
 client = TestClient(app)
 
 def test_calculate_rpn():
-    response = client.post("/calculate", json=["3", "4", "+", "2", "*"])
+    response = client.post("/calculate", json=[3, 4, "+", 2, "*"])
     assert response.status_code == 200
     assert response.json() == {"result": 14}
 
