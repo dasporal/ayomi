@@ -18,8 +18,12 @@ def read_root():
 class CalculationRequest(BaseModel):
     stack: List[Union[float, str]] 
   
-# Route to calculate RPN and store the result in the database
-@router.post("/calculate")
+@router.post(
+    "/calculate",
+    summary="Calculate RPN Expression",
+    description="Calculates the result of a Reverse Polish Notation expression and stores it in the database.",
+    response_description="The result of the RPN calculation."
+)
 def calculate_rpn(operations: List[Union[float, str]], db: Session = Depends(get_db)):
     try:
         result = rpn(operations)  # Call the rpn function with the list of operations
@@ -29,8 +33,11 @@ def calculate_rpn(operations: List[Union[float, str]], db: Session = Depends(get
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-# Route to export all calculations to CSV
-@router.get("/export-csv")
+@router.get("/export-csv",
+    summary="Export CSV",
+    description="Export all the data of the database.",
+    response_description="The database's data as a CSV stream."
+)
 def export_csv(db: Session = Depends(get_db)):
     calculations = get_calculations(db)
     
