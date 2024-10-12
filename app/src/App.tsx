@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function NPICalculator() {
-	const [stack, setStack] = useState<(number | string)[]>([]); // Stack now holds both numbers and operations
+	const [stack, setStack] = useState<(number | string)[]>([]);
 	const [input, setInput] = useState('');
 	const [result, setResult] = useState<number | null>(null);
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -40,7 +40,7 @@ export default function NPICalculator() {
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(stack) // Send the raw array instead of wrapping it in an object
+				body: JSON.stringify(stack)
 			});
 
 			if (!response.ok) {
@@ -50,7 +50,31 @@ export default function NPICalculator() {
 
 			const data = await response.json();
 			setResult(data.result);
-			setErrorMessage(null); // Clear error if successful
+			setErrorMessage(null);
+		} catch (error) {
+			console.error('Error performing operation:', error);
+			setErrorMessage(`Something went wrong, please try again. Message: ${error}`);
+		}
+	};
+
+	const getCSV = async () => {
+		try {
+			const response = await fetch('http://localhost:8001/export-csv');
+
+			if (!response.ok) {
+				const error = await response.json();
+				throw new Error(error.detail);
+			}
+
+			const blob = await response.blob();
+
+			const url = window.URL.createObjectURL(blob);
+			const link = document.createElement('a');
+			link.href = url;
+			link.setAttribute('download', 'calculations.csv');
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
 		} catch (error) {
 			console.error('Error performing operation:', error);
 			setErrorMessage(`Something went wrong, please try again. Message: ${error}`);
@@ -58,7 +82,7 @@ export default function NPICalculator() {
 	};
 
 	return (
-		<div className="flex h-screen w-screen flex-col items-center justify-center">
+		<div className="flex h-screen w-screen flex-col items-center justify-center gap-8">
 			<Card className="mx-auto w-full max-w-md">
 				<CardHeader>
 					<CardTitle>NPI Calculator</CardTitle>
@@ -102,6 +126,8 @@ export default function NPICalculator() {
 					</div>
 				</CardContent>
 			</Card>
+
+			<Button onClick={getCSV}>Download Data</Button>
 		</div>
 	);
 }
