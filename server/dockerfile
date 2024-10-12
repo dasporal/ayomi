@@ -2,7 +2,7 @@ FROM python:3.10-slim
 
 WORKDIR /server
 
-COPY ./server /server
+COPY . /server
 
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt

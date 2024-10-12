@@ -1,12 +1,25 @@
 services:
   backend:
     build:
-      context: .
+      context: ./server
       dockerfile: Dockerfile
-    container_name: fastapi_server
+    container_name: ayomi_server
     ports:
       - '8001:8000'
     volumes:
       - ./server:/server
     environment:
       - PYTHONUNBUFFERED=1
+
+  frontend:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: ayomi_app
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
