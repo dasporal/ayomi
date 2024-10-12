@@ -9,4 +9,4 @@ class Calculation(Base):
     id = Column(Integer, primary_key=True, index=True)
     operation = Column(String, index=True)
     result = Column(Float)
-    timestamp = Column(DateTime, default=datetime.timezone.utc)
+    timestamp = Column(DateTime, default=datetime.datetime.now(datetime.timezone.utc))
