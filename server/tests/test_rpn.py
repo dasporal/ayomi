@@ -1,4 +1,4 @@
-from main import rpn
+from server.app.main import rpn
 import pytest
 
 def test_rpn_calculator_valid():
