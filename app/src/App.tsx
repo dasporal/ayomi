@@ -97,14 +97,22 @@ export default function NPICalculator() {
 								))}
 							</div>
 						</div>
-						<div className="flex w-full gap-2">
-							<Input
-								type="number"
-								value={input}
-								onChange={(e) => setInput(e.target.value)}
-								placeholder="Enter a number"
-							/>
-							<Button onClick={pushToStack}>Push</Button>
+						<div>
+							<form
+								onSubmit={(e) => {
+									e.preventDefault();
+									pushToStack();
+								}}
+								className="flex w-full gap-2"
+							>
+								<Input
+									type="number"
+									value={input}
+									onChange={(e) => setInput(e.target.value)}
+									placeholder="Enter a number"
+								/>
+								<Button onClick={pushToStack}>Push</Button>
+							</form>
 						</div>
 						<h3 className="self-start font-semibold">Select Operation:</h3>
 						<div className="grid w-full grid-cols-2 gap-2">
