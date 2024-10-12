@@ -85,7 +85,7 @@ export default function NPICalculator() {
 		<div className="flex h-screen w-screen flex-col items-center justify-center gap-8">
 			<Card className="mx-auto w-full max-w-md">
 				<CardHeader>
-					<CardTitle>NPI Calculator</CardTitle>
+					<CardTitle>Calculatrice NPI</CardTitle>
 				</CardHeader>
 				<CardContent>
 					<div className="flex flex-col items-center justify-center gap-4">
@@ -122,7 +122,7 @@ export default function NPICalculator() {
 							<Button onClick={() => addOperationToStack('/')}>/</Button>
 						</div>
 						<Button className="mt-4 w-full" onClick={submitCalculation}>
-							Submit Calculation
+							Calculer
 						</Button>
 						{result !== null && (
 							<div className="mt-4">
@@ -135,7 +135,7 @@ export default function NPICalculator() {
 				</CardContent>
 			</Card>
 
-			<Button onClick={getCSV}>Download Data</Button>
+			<Button onClick={getCSV}>Télécharger les donnéeszb</Button>
 		</div>
 	);
 }
