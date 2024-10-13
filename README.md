@@ -62,7 +62,9 @@ Améliorations futures :
 - Améliorer l'API pour mettre en place un système de login et rôles utilisateurs (user qui a accès à la calculatrice, admin qui a accès aux export CSV)
 - Implémenter une interface utilisateur plus avancée avec des fonctionnalités supplémentaires (affichages des calculs fait sans devoir passer par l'export, édition de la stack sans devoir recharger la page...).
 
-Sinon, problème que j'ai rencontré et que je n'ai pas trouvé comment résoudre, c'est mon `test_calculate_rpn` qui fail à chaque fois car la base de données me renvoit cette erreur: `sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) attempt to write a readonly database`. J'ai eu beau chercher si c'était des problèmes d'écriture lors du setup du fichier de base de données, et d'autres pistes du même genre, sans rien trouver. :( Je suis à peu près certain que la solution est beaucoup plus simple que je ne l'imagine, mais je dis pas non à quelques conseils !
+Sinon, problème que j'ai rencontré et que je n'ai pas trouvé comment résoudre, c'est mon `test_calculate_rpn` qui fail à chaque fois car la base de données me renvoit cette erreur: `sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) attempt to write a readonly database`.
+
+J'ai eu beau chercher si c'était des problèmes d'écriture lors du setup du fichier de base de données, et d'autres pistes du même genre, sans rien trouver. :( Je suis à peu près certain que la solution est beaucoup plus simple que je ne l'imagine, mais je dis pas non à quelques conseils !
 
 ## Conclusion
 
