@@ -13,7 +13,7 @@ Le projet est composé d'un dossier `server` comportant l'API et la connexion à
 Le projet est disponible en lançant la commande :
 
 ```bash
-docker compose up build
+docker compose up --build
 ```
 
 Cela va rendre l'API disponible sur `localhost:8001` et l'application React sur `localhost:5173`. La documentation OpenAPI est disponible sur `localhost:8001/docs`.
@@ -65,9 +65,5 @@ Améliorations futures :
 Sinon, problème que j'ai rencontré et que je n'ai pas trouvé comment résoudre, c'est mon `test_calculate_rpn` qui fail à chaque fois car la base de données me renvoit cette erreur: `sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) attempt to write a readonly database`.
 
 J'ai eu beau chercher si c'était des problèmes d'écriture lors du setup du fichier de base de données, et d'autres pistes du même genre, sans rien trouver. :( Je suis à peu près certain que la solution est beaucoup plus simple que je ne l'imagine, mais je dis pas non à quelques conseils !
-
-## Conclusion
-
-Merci d'avoir pris le temps de regarder ce projet ! Si vous avez des questions ou des suggestions, n'hésitez pas à me contacter. J'ai vraiment apprécié travailler sur cet exercice, et j'espère que vous trouverez le résultat intéressant.
 
 Prenez soin de vous et passez une excellente journée ! 😊
